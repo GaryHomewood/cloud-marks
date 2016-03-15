@@ -1,0 +1,65 @@
+extends layout
+
+block content
+    .ui.text.container
+        header
+            h1.ui.header Bookmarks
+            a(href='/bookmark' class='ui small icon blue button') 
+                i(class='bookmark icon') 
+                |  Add
+        .ui.clearing.divider
+
+        .edit-label
+            span 
+                small EDIT
+        .onoffswitch
+            input(type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='toggleEdit')
+            label(class='onoffswitch-label' for='toggleEdit')
+        
+        .ui.accordion
+            .title
+                i(class='dropdown icon') 
+                | All tags
+            .content
+                each tag in allTags
+                    - var t = tag.trim()
+                    if t.length
+                        a(href='/?tag=' + t class='ui green tag label all-tag')= tag
+        
+        if filter
+            .ui.basic.segment
+                p Filtered by 
+                    a(href='/' class='ui green small tag label filter-tag')= filter
+                        i(class='delete icon')
+
+        each bookmark in bookmarks
+            .ui.segment
+                h3
+                    a(href=bookmark.url)
+                        img(src='http://www.google.com/s2/favicons?domain_url=' + bookmark.url)
+                        = bookmark.name 
+                    span 
+                        &mdash; 
+                        small= bookmark.timeSince
+                
+                if bookmark.note
+                    p= bookmark.note
+                each tag in bookmark.tags
+                    - var t = tag.trim()
+                    if t.length
+                        a(href='/?tag=' + t class='ui green small tag label')= tag
+
+                .bookmark-buttons
+                    .ui.clearing.divider
+                    a(href='/bookmark/' + bookmark._id class='ui mini blue button') 
+                        i(class='edit icon')
+                        | EDIT
+                    form(action='/bookmark' method='post')
+                        input(type='hidden' name='_method' value='delete')
+                        input(type='hidden' name='id' value=bookmark._id)
+                        button(type='submit' class='ui mini button') 
+                            i(class='delete icon')
+                            | DELETE
+            
+        .ui.basic.segment
+            a(href='/logout') Logout

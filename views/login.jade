@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .login-column.column
+            .ui.raised.padded.text.container.segment
+                h1.ui.dividing.header Login
+                
+                if message.length
+                    div(class='alert alert-danger')= message
+                
+                form(action='/login' method='post' class='ui form')
+                    .field
+                        .ui.left.icon.large.input
+                            i(class='user icon')
+                            input(type='text' name='email' placeholder='Email address')
+                    .field
+                        .ui.left.icon.large.input
+                            i(class='lock icon')
+                            input(type='password' class='form-control' name='password' placeholder='Password')
+                    button(class='ui  fluid large blue submit button' type='submit') Login

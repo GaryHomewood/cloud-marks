@@ -1,0 +1,21 @@
+{
+  "name": "reload-sandbox",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "semantic": "semantic-ui#^2.1.8"
+    },
+    "overrides": {
+        "semantic": {
+            "main": [
+                "dist/semantic.min.css",
+                "dist/semantic.min.js"
+            ]
+        }
+    }
+}

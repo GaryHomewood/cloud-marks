@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .ui.text.container
+        h1.ui.dividing.header Bookmark
+        form(action='/bookmark', method='post' id='bookmarkForm' class='ui form')
+            .field
+                .ui.labeled.input
+                    .ui.label
+                        | URL
+                    input(type='text' name='url' value=bookmark ? bookmark.url : '')
+            .field
+                .ui.labeled.input
+                    .ui.label
+                        | Name
+                    input(type='text' name='name' value=bookmark ? bookmark.name : '')
+            .field
+                .ui.right.labeled.left.icon.input
+                    i(class='tags icon')
+                    input(type='text' name='tags' placeholder='Enter comma-separated tags' value=bookmark ? bookmark.tags : '')
+                    .ui.tag.label
+                        | Tags
+            .field
+                textarea(class='form-control' name='note' placeholder='Enter a note')= bookmark ? bookmark.note : ''
+            
+            input(type='hidden' name='id' value=bookmarkId)   
+            input(type='hidden' id='isPopup' name='popup' value=popup)   
+            div 
+                a(href='#' id='cancelBookmark' class='ui left floated button') Cancel
+                button(type='submit' class='ui right floated blue button') Save
