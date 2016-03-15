@@ -9,12 +9,12 @@ block content
                 |  Add
         .ui.clearing.divider
 
-        .edit-label
-            span 
-                small EDIT
         .onoffswitch
             input(type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='toggleEdit')
             label(class='onoffswitch-label' for='toggleEdit')
+        .edit-label
+            span 
+                small EDIT
         
         .ui.accordion
             .title
@@ -38,8 +38,7 @@ block content
                     a(href=bookmark.url)
                         img(src='http://www.google.com/s2/favicons?domain_url=' + bookmark.url)
                         = bookmark.name 
-                    span 
-                        &mdash; 
+                    span  &mdash; 
                         small= bookmark.timeSince
                 
                 if bookmark.note

@@ -95,17 +95,20 @@ h3 span {
   opacity: 0; }
 
 /* IE 10+ */
+.ui.accordion .title {
+  max-width: 75%; }
+
 .edit-label {
   position: relative;
   float: right;
-  top: 5px;
-  padding-right: 10px; }
+  top: 7px;
+  left: -20px; }
 
 .onoffswitch {
   position: relative;
   width: 50px;
   float: right;
-  top: 10px;
+  top: 12px;
   left: -10px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -151,6 +154,3 @@ h3 span {
   right: 0px;
   background-color: #2196F3;
   box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2); }
-
-.ui.accordion .title {
-  max-width: 75%; }
