@@ -28,5 +28,5 @@ var Bookmarks = (function() {
 })();
 
 $('#toggleEdit').click(function(e) {
-    $('.bookmark-buttons').toggle('medium');
+    $('.bookmark-buttons').toggle('fast');
 });
