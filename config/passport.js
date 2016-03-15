@@ -19,7 +19,7 @@ module.exports = function(passport) {
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, email, password, cb) { // callback with email and password from our form
+        function(req, email, password, cb) {
             User.findByEmail(email, function(err, user) {
                 if (err) { return cb(err); }
                 if (!user) { return cb(null, false, req.flash('loginMessage', 'No user found.')); }

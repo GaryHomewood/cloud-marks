@@ -37,10 +37,14 @@ app.use(function(req,res,next){
     }
 });
 
-mongoose.connect(process.env.MONGOLAB_URI);
+if (app.get('env') === 'development') {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect(process.env.MONGOLAB_URI);
+}
 
 require('./config/passport')(passport);
-app.use(session({secret: 'ilovescotchscotchyscotchscotch', resave: false, saveUninitialized: false}));
+app.use(session({secret: 'ilovescotchscotchyscotchscotch', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
