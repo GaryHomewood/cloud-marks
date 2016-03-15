@@ -37,8 +37,7 @@ app.use(function(req,res,next){
     }
 });
 
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+mongoose.connect(process.env.DATABASE_URL);
 
 require('./config/passport')(passport);
 app.use(session({secret: 'ilovescotchscotchyscotchscotch', resave: false, saveUninitialized: false}));
