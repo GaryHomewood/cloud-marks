@@ -37,7 +37,7 @@ app.use(function(req,res,next){
     }
 });
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.MONGOLAB_URI);
 
 require('./config/passport')(passport);
 app.use(session({secret: 'ilovescotchscotchyscotchscotch', resave: false, saveUninitialized: false}));
