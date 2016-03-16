@@ -24,30 +24,32 @@ block content
                 each tag in allTags
                     - var t = tag.trim()
                     if t.length
-                        a(href='/?tag=' + t class='ui green tag label all-tag')= tag
+                        a(href='/?tags=' + t class='ui tag label all-tag')= tag
         
-        if filter
+        if filter.tags
             .ui.basic.segment
                 p Filtered by 
-                    a(href='/' class='ui green small tag label filter-tag')= filter
+                    a(href='/' class='ui small tag label filter-tag')= filter.tags
                         i(class='delete icon')
 
         each bookmark in bookmarks
             .ui.segment
-                h3
+                if bookmark.note
+                    - var cls = ''
+                else
+                    - var cls = String(bookmark.tags).trim().length === 0 ? 'no-tags' : ''
+                h3(class= cls)
                     a(href=bookmark.url)
                         img(src='http://www.google.com/s2/favicons?domain_url=' + bookmark.url)
                         = bookmark.name 
                     span  &mdash; 
                         small= bookmark.timeSince
-                
                 if bookmark.note
                     p= bookmark.note
                 each tag in bookmark.tags
                     - var t = tag.trim()
                     if t.length
-                        a(href='/?tag=' + t class='ui green small tag label')= tag
-
+                        a(href='/?tags=' + t class='ui small tag label')= tag
                 .bookmark-buttons
                     .ui.clearing.divider
                     a(href='/bookmark/' + bookmark._id class='ui mini blue button') 
@@ -59,6 +61,18 @@ block content
                         button(type='submit' class='ui mini button') 
                             i(class='delete icon')
                             | DELETE
+            
+        .ui.basic.segment
+            .paging-buttons
+                if pages > 1
+                    if page > 0
+                        a(href='/?' + prevQueryString class='ui small button') 
+                            i(class='angle left icon') 
+                            | Newer   
+                    if (parseInt(page) + 1) < pages
+                        a(href='/?' + nextQueryString class='ui small button') 
+                            | Older   
+                            i(class='angle right icon') 
             
         .ui.basic.segment
             a(href='/logout') Logout

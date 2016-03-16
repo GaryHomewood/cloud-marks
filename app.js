@@ -38,7 +38,7 @@ app.use(function(req,res,next){
 });
 
 if (app.get('env') === 'development') {
-    mongoose.connect(process.env.MONGODB_URI);
+    mongoose.connect('mongodb://localhost/bookmarks');
 } else {
     mongoose.connect(process.env.MONGOLAB_URI);
 }

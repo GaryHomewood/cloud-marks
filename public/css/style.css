@@ -16,6 +16,9 @@ header h1 {
 header a {
   float: right; }
 
+h3.no-tags {
+  margin-bottom: 0; }
+
 form {
   display: inline; }
 
@@ -26,6 +29,9 @@ form {
   display: none; }
   .bookmark-buttons button {
     float: right; }
+
+.paging-buttons {
+  float: right; }
 
 .ui.tag.label {
   margin-right: 10px; }

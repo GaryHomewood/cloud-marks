@@ -23,6 +23,10 @@ header {
     }
 }
 
+h3.no-tags {
+    margin-bottom: 0;
+}
+
 form {
     display: inline;
 }
@@ -36,6 +40,10 @@ form {
     button {
         float: right;
     }
+}
+
+.paging-buttons {
+    float: right;
 }
 
 .ui.tag.label {

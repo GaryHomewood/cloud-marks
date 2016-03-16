@@ -1,33 +1,46 @@
 var Bookmark = require('../models/bookmark.js');
+var querystring = require('querystring');
 
 module.exports = function(app, passport) {
     app.get('/', isLoggedIn, function(req, res) {
+        var tags = req.query['tags'];
+        var filter = tags ? {tags: tags} : {};
+        var pageSize = 20;
+        var page = req.query['p'] > 0 ? req.query['p'] : 0;
 
-        var tag = req.query.tag ? req.query.tag.trim() : '';
+        Bookmark.distinct('tags')
+            .sort()
+            .exec(function(err, allTags) {
+                Bookmark.find(filter)
+                    .count()
+                    .exec(function(err, count) {
+                        Bookmark.find(filter)
+                            .sort({ createdDate: -1 })
+                            .skip(pageSize * page)
+                            .limit(pageSize)
+                            .exec(function(err, bookmarks) {
 
-        var cbFindAll = function(err, tags) {
-            var cb = function(err, bookmarks) {
-                res.render('index', {
-                    user: req.user,
-                    bookmarks: bookmarks,
-                    allTags: tags,
-                    filter: tag
-                })};
+                                var prevQueryString = filter;
+                                prevQueryString.p = parseInt(page) - 1;
+                                prevQueryString = querystring.stringify(prevQueryString);
 
-            if (tag.length > 0) {
-                Bookmark.find({ tags: tag })
-                    .sort({ createdDate: -1 })
-                    .limit(25)
-                    .exec(cb);
-            } else {
-                Bookmark.find()
-                    .sort({ createdDate: -1 })
-                    .limit(25)
-                    .exec(cb);
-            }
-        }
+                                var nextQueryString = filter;
+                                nextQueryString.p = parseInt(page) + 1;
+                                nextQueryString = (querystring.stringify(nextQueryString));
 
-        Bookmark.distinct('tags').sort().exec(cbFindAll);
+                                res.render('index', {
+                                    bookmarks: bookmarks,
+                                    allTags: allTags,
+                                    filter: filter,
+                                    pages: Math.ceil(count / pageSize),
+                                    page: page,
+                                    prevQueryString: prevQueryString,
+                                    nextQueryString: nextQueryString,
+                                    count: count
+                                });
+                            });
+                    })
+            });
     });
 }
 
