@@ -23,10 +23,6 @@ header {
     }
 }
 
-h3.no-tags {
-    margin-bottom: 0;
-}
-
 form {
     display: inline;
 }
@@ -37,13 +33,16 @@ form {
 
 .bookmark-buttons {
     display: none;
-    button {
-        float: right;
-    }
 }
 
 .paging-buttons {
-    float: right;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+
+.logout {
+    margin: 1rem 0 2rem 0;
+    padding: 1rem 0.5rem 1rem 0;
 }
 
 .ui.tag.label {
@@ -79,6 +78,9 @@ h3 {
     span {
         font-size: 80%;
         color: #ccc;
+    }
+    &.no-tags {
+        margin-bottom: 0;
     }
 }
 
@@ -160,4 +162,22 @@ h3 {
     right: 0px;
     background-color: #2196F3;
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+}
+
+.clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        // Fixes Opera/contenteditable bug:
+        // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+        line-height: 0;
+    }
+    &:after {
+        clear: both;
+    }
+}
+.pull-right {
+    float: right;
 }

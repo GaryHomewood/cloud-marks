@@ -16,9 +16,6 @@ header h1 {
 header a {
   float: right; }
 
-h3.no-tags {
-  margin-bottom: 0; }
-
 form {
   display: inline; }
 
@@ -27,11 +24,14 @@ form {
 
 .bookmark-buttons {
   display: none; }
-  .bookmark-buttons button {
-    float: right; }
 
 .paging-buttons {
-  float: right; }
+  margin: 1rem 0;
+  padding: 1rem 0; }
+
+.logout {
+  margin: 1rem 0 2rem 0;
+  padding: 1rem 0.5rem 1rem 0; }
 
 .ui.tag.label {
   margin-right: 10px; }
@@ -62,6 +62,9 @@ h3 img {
 h3 span {
   font-size: 80%;
   color: #ccc; }
+
+h3.no-tags {
+  margin-bottom: 0; }
 
 ::-webkit-input-placeholder {
   opacity: 1;
@@ -160,3 +163,15 @@ h3 span {
   right: 0px;
   background-color: #2196F3;
   box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2); }
+
+.clearfix {
+  *zoom: 1; }
+  .clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  .clearfix:after {
+    clear: both; }
+
+.pull-right {
+  float: right; }

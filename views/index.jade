@@ -58,21 +58,22 @@ block content
                     form(action='/bookmark' method='post')
                         input(type='hidden' name='_method' value='delete')
                         input(type='hidden' name='id' value=bookmark._id)
-                        button(type='submit' class='ui mini button') 
+                        button(type='submit' class='ui mini button pull-right') 
                             i(class='delete icon')
                             | DELETE
             
-        .ui.basic.segment
-            .paging-buttons
-                if pages > 1
-                    if page > 0
-                        a(href='/?' + prevQueryString class='ui small button') 
-                            i(class='angle left icon') 
-                            | Newer   
-                    if (parseInt(page) + 1) < pages
-                        a(href='/?' + nextQueryString class='ui small button') 
-                            | Older   
-                            i(class='angle right icon') 
-            
-        .ui.basic.segment
-            a(href='/logout') Logout
+        .paging-buttons.clearfix
+            if pages > 1
+                if page > 0
+                    a(href='/?' + prevQueryString class='ui small button') 
+                        i(class='angle left icon') 
+                        | Newer   
+                if (parseInt(page) + 1) < pages
+                    a(href='/?' + nextQueryString class='ui small button pull-right') 
+                        | Older   
+                        i(class='angle right icon') 
+        
+        .logout.clearfix
+            a(href='/logout' class='pull-right') 
+                i(class='sign out icon') 
+                | Logout 
