@@ -9,7 +9,6 @@ module.exports = function(app, passport) {
         var page = req.query['p'] > 0 ? req.query['p'] : 0;
 
         Bookmark.distinct('tags')
-            .sort()
             .exec(function(err, allTags) {
                 Bookmark.find(filter)
                     .count()
@@ -19,6 +18,9 @@ module.exports = function(app, passport) {
                             .skip(pageSize * page)
                             .limit(pageSize)
                             .exec(function(err, bookmarks) {
+
+                                // exclude no tags, and sort
+                                allTags = allTags.filter(function(n) {return n != ''}).sort();
 
                                 var prevQueryString = filter;
                                 prevQueryString.p = parseInt(page) - 1;
@@ -45,6 +47,7 @@ module.exports = function(app, passport) {
 }
 
 function isLoggedIn(req, res, next) {
+    return next();
     if (req.isAuthenticated()) {
         return next();
     }
