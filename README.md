@@ -7,11 +7,7 @@ User details set as environment properties (EMAIL, PASSWORD)
 
 ## Mobile screenshots
 
-### Bookmarks list
-
 ![](http://i.imgur.com/q7XVFQbl.png)
-
-### Bookmark detail
 
 ![](http://i.imgur.com/L2nqVDrl.png)
 
